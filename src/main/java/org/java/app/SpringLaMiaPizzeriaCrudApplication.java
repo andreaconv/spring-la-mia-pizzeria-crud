@@ -21,15 +21,15 @@ public class SpringLaMiaPizzeriaCrudApplication implements CommandLineRunner {
 	public void run(String... args) throws Exception {
 		
 //		String nome, String descrizione, String foto, float prezzo
-		Pizza margherita = new Pizza("margherita", "pomodoro, mozzarella, basilico", "url-foto-margherita", 6.50f);
-		Pizza diavola = new Pizza("diavola", "pomodoro, mozzarella, salame piccante", "url-foto-diavola", 8.50f);
-		Pizza ortolana = new Pizza("ortolana", "mozzarella, peperoni, melanzane, zucchine", "url-foto-ortolana", 7.50f);
-		
-		pizzaService.save(margherita);
-		pizzaService.save(diavola);
-		pizzaService.save(ortolana);
-		
-		System.out.println("Insert OK!");
+//		Pizza margherita = new Pizza("margherita", "pomodoro, mozzarella, basilico", "url-foto-margherita", 6.50f);
+//		Pizza diavola = new Pizza("diavola", "pomodoro, mozzarella, salame piccante", "url-foto-diavola", 8.50f);
+//		Pizza ortolana = new Pizza("ortolana", "mozzarella, peperoni, melanzane, zucchine", "url-foto-ortolana", 7.50f);
+//		
+//		pizzaService.save(margherita);
+//		pizzaService.save(diavola);
+//		pizzaService.save(ortolana);
+//		
+//		System.out.println("Insert OK!");
 	}
 	
 

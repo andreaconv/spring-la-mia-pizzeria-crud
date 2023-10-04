@@ -7,6 +7,10 @@
 <body>
 
   <h1>Pizze:</h1>
+  
+  <p th:if="${pizze.size() == 0}">
+  		NON CI SONO PIZZE
+  </p>
 
   <ul>
     <li
