@@ -1,0 +1,21 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<th:block th:replace="~{../fragments/head-frag :: head}"></th:block>
+<body class="bg-dark text-white" th:object="${pizza}">
+
+	<th:block th:replace="../fragments/header :: header" th:with="name='andrea'"></th:block>
+	
+	<div class="container py-5">
+	
+		<h2>Pizza: [[*{nome}]]</h2>
+	
+		<h4 class="d-inline">Ingredienti: </h4>
+		<span>[[*{descrizione}]]</span>
+		
+<!-- 		TODO: aggiungere una card con i dettagli e l'immagine -->
+		
+	
+	</div>
+	
+
+</body>
+</html>
