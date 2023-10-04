@@ -20,8 +20,8 @@ public class Pizza {
 	private String foto;
 	private float prezzo;
 
-//	public Pizza() { }
 	//COSTRUTTORE
+	public Pizza() { }
 	public Pizza(String nome, String descrizione, String foto, float prezzo) {
 
 		setId(id);

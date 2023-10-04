@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+
+  <h1>Pizze:</h1>
+
+  <ul>
+    <li
+		th:each="pizza : ${pizze}"
+		th:object="${pizza}"
+		>
+    	[[*{nome}]]	
+			<!-- <a th:href="@{/pizza/{id}(id=*{id})}">
+			</a> -->
+		</li>
+  </ul>
+  
+</body>
+</html>
