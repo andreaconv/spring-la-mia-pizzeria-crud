@@ -14,6 +14,14 @@
 		
 			<h1 class="text-center mb-4">LE NOSTRE PIZZE</h1>
 			
+			<form class="d-flex justify-content-center">
+				<div class="d-flex">
+					<input type="text" name="nomePizza" class="form-control" th:value="${nomePizza}" placeholder="Cerca la tua pizza">
+					<button type="submit" value="SEARCH" class="btn btn-primary mx-3">Cerca</button>
+				</div>
+			</form>
+			
+<!-- 			TODO: aggiungere una paginazione dei dati -->
 			<table class="table table-striped table-dark">
 				<thead>
 					<tr>

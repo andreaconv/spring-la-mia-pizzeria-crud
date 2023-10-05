@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 @RequestMapping()
@@ -28,11 +29,34 @@ public class PizzaController {
 		return "index";
 	}
 	
+//	@GetMapping("/pizze")
+//	public String getPizze(Model model) {
+//		
+//		List<Pizza> pizze = pizzaService.findAll();
+//		model.addAttribute("pizze", pizze);
+//		return "pizze-index";
+//		
+//	}
+	
 	@GetMapping("/pizze")
-	public String getPizze(Model model) {
+	public String getPizze(
+			Model model, 
+			@RequestParam(required = false) String nomePizza) {
 		
-		List<Pizza> pizze = pizzaService.findAll();
+//		List<Pizza> pizze = null;
+//		if(nomePizza == null) {
+//			pizze = pizzaService.findAll();
+//			model.addAttribute("pizze", pizze);
+//		}else {
+//			pizze = pizzaService.findByNome(nomePizza);
+//			model.addAttribute("pizze", pizze);
+//		}
+		//stessa condizione ma fatta con un ternario
+		List<Pizza> pizze = nomePizza == null
+						? pizzaService.findAll()
+						: pizzaService.findByNome(nomePizza);
 		model.addAttribute("pizze", pizze);
+		
 		return "pizze-index";
 		
 	}
