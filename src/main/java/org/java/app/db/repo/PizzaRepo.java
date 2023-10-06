@@ -11,4 +11,7 @@ public interface PizzaRepo extends JpaRepository<Pizza, Integer> {
 
 	public List<Pizza> findByNome(String nomePizza);
 	public List<Pizza> findByNomeContaining(String nomePizza);
+	
+//	FIXME: bug da aggiustare
+	public List<Pizza> findByNomeOrDescrizioneContaining(String nomePizza, String nomeIngrediente);
 }

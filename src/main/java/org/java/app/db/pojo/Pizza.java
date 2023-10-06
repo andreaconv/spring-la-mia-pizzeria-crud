@@ -1,10 +1,16 @@
 package org.java.app.db.pojo;
 
+import org.hibernate.validator.constraints.Length;
+
+import jakarta.annotation.Nullable;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.validation.constraints.DecimalMin;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 
 @Entity
 public class Pizza {
@@ -13,12 +19,38 @@ public class Pizza {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	
+	//NOME
 	@Column(length = 128, nullable = false)
+	@NotBlank(message = "Il nome non può essere vuoto")
+	@Length(
+		min = 3, 
+		max = 255, 
+		message = "Il nome deve essere composte da 3~128 caratteri"
+	)
 	private String nome;
+	
+	
+	//DESCRIZIONE
+	@Column(length = 255, nullable = false)
+	@Length(
+		min = 3, 
+		max = 255, 
+		message = "Gli ingredienti devono essere composti da 3~255 caratteri"
+	)
 	private String descrizione;
+	
+	
+	//FOTO
 	@Column(unique = true)
+	@Nullable
 	private String foto;
+	
+	
+	//PREZZO
+	@NotNull(message = "Inserire il prezzo")
+	@DecimalMin(value = "0.00", inclusive = false, message="Il prezzo non può essere inferiore o uguale a 0")
 	private float prezzo;
+	
 
 	//COSTRUTTORE
 	public Pizza() { }
@@ -70,12 +102,16 @@ public class Pizza {
 	public void setPrezzo(float prezzo) {
 		this.prezzo = prezzo;
 	}
+	public String getFormattedPrice() {
+		return String.format("%.2f", prezzo);
+	}
 
 	@Override
 	public String toString() {
 		return "[" + getId() + "] Pizza: \n"
 				+ "nome: " + getNome() + "\n"
 				+ "descrizione: " + getDescrizione() + "\n"
+				+ "nome foto: " + getFoto() + "\n"
 				+ "prezzo: " + getPrezzo();
 		
 	}
