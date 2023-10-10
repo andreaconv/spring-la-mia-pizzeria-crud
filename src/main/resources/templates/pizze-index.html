@@ -40,11 +40,30 @@
 						<td>[[*{descrizione}]]</td>
 						<td>€ [[*{getFormattedPrice()}]]</td>
 						<td>
-							<a th:href="@{/pizze/{id}(id=*{id})}">
-								<div class="btn btn-primary">
+							<a title="Mostra" th:href="@{/pizze/{id}(id=*{id})}">
+								<span class="btn btn-primary">
 									<i class="fa-solid fa-eye"></i>
-								</div>
+								</span>
 							</a>
+							
+							<a title="Modifica" th:href="@{#}">
+								<span class="btn btn-warning">
+									<i class="fa-solid fa-pencil text-white"></i>
+								</span>
+							</a>
+							
+							<form 
+								th:action="@{/pizze/delete/{id}(id=*{id})}" 
+								method="POST"
+								title="Elimina"
+								class="d-inline"
+								>
+								<button type="submit" class="btn btn-danger">
+									<i class="fa-solid fa-trash-can"></i>
+								</button>
+							</form>
+							
+							
 						</td>
 					</tr>
 				</tbody>

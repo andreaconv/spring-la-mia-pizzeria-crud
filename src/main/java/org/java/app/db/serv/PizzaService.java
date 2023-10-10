@@ -38,4 +38,9 @@ public class PizzaService {
 //		FIXME: bug da aggiustare
 //		return pizzaRepo.findByNomeOrDescrizioneContaining(nomePizza, nomePizza);
 	}
+	
+	public void deletePizza(Pizza pizza) {
+			
+			pizzaRepo.delete(pizza);
+		}
 }
