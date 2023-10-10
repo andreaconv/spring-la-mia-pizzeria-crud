@@ -81,10 +81,10 @@ public class PizzaController {
 	public String getCreateForm(Model model) {
 		
 		model.addAttribute("pizza", new Pizza());
-		return "pizza-create";
+		return "pizza-create-edit";
 	}
 	
-	@PostMapping("pizze/create")
+	@PostMapping("/pizze/create")
 	public String storePizza(
 			@Valid @ModelAttribute Pizza pizza,
 			BindingResult bindingResult,
@@ -97,7 +97,7 @@ public class PizzaController {
 			System.out.println("Error:");
 			bindingResult.getAllErrors().forEach(System.out::println);
 			
-			return "pizza-create";
+			return "pizza-create-edit";
 		}else 
 			System.out.println("No error");
 		
@@ -110,12 +110,57 @@ public class PizzaController {
 			
 			model.addAttribute("foto_unique", "Il nome della foto deve essere unica");
 			
-			return "pizza-create";
+			return "pizza-create-edit";
 		}
 		
 		return "redirect:/pizze";
 	}
 	
+	//EDIT PIZZA
+	@GetMapping("/pizze/update/{id}")
+	public String getEditForm(
+			@PathVariable int id,
+			Model model
+		) {
+
+		Pizza pizza = pizzaService.findById(id);
+		model.addAttribute("pizza", pizza);
+
+		return "pizza-create-edit";
+	}
+	@PostMapping("pizze/update/{id}")
+	public String updatePizza(
+			@Valid @ModelAttribute Pizza pizza,
+			BindingResult bindingResult,
+			Model model) {
+		
+//		System.out.println("New PIzza: " + pizza);
+		
+		//controlla se non ci sono errori, se dovessero esserci stampa il messaggio attribuito all'errore
+		if (bindingResult.hasErrors()) {
+			System.out.println("Error:");
+			bindingResult.getAllErrors().forEach(System.out::println);
+			
+			return "pizza-create-edit";
+		}else 
+			System.out.println("No error");
+		
+		try {
+			pizzaService.save(pizza);
+		} catch (Exception e) {
+			
+			// CONSTRAIN VALIDATION (unique)
+			System.out.println("Errore constrain: " + e.getClass().getSimpleName());
+			
+			model.addAttribute("foto_unique", "Il nome della foto deve essere unica");
+			
+			return "pizza-create-edit";
+		}
+		
+		return "redirect:/pizze";
+	}
+	
+	//DELETE PIZZA
 	@PostMapping("/pizze/delete/{id}")
 	public String deletePizza(@PathVariable int id) {
 		
