@@ -89,31 +89,7 @@ public class PizzaController {
 			@Valid @ModelAttribute Pizza pizza,
 			BindingResult bindingResult,
 			Model model) {
-		
-//		System.out.println("New PIzza: " + pizza);
-		
-		//controlla se non ci sono errori, se dovessero esserci stampa il messaggio attribuito all'errore
-		if (bindingResult.hasErrors()) {
-			System.out.println("Error:");
-			bindingResult.getAllErrors().forEach(System.out::println);
-			
-			return "pizza-create-edit";
-		}else 
-			System.out.println("No error");
-		
-		try {
-			pizzaService.save(pizza);
-		} catch (Exception e) {
-			
-			// CONSTRAIN VALIDATION (unique)
-			System.out.println("Errore constrain: " + e.getClass().getSimpleName());
-			
-			model.addAttribute("foto_unique", "Il nome della foto deve essere unica");
-			
-			return "pizza-create-edit";
-		}
-		
-		return "redirect:/pizze";
+		return savePizza(pizza, bindingResult, model);
 	}
 	
 	//EDIT PIZZA
@@ -131,6 +107,15 @@ public class PizzaController {
 	@PostMapping("pizze/update/{id}")
 	public String updatePizza(
 			@Valid @ModelAttribute Pizza pizza,
+			BindingResult bindingResult,
+			Model model) {
+		
+		return savePizza(pizza, bindingResult, model);
+	}
+	
+	//METODO CHE ACCOMUNA IL CREATE E L'EDIT
+	private String savePizza(
+			Pizza pizza,
 			BindingResult bindingResult,
 			Model model) {
 		
